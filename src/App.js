@@ -6,6 +6,7 @@ import Todo from "./components/Todo";
 function App() {
   let [todos, setTodos] = useState([]);
   const [todosToShow, setTodosToShow] = useState("all");
+  const [toggleAllComplete, setToggleAllComplete] = useState(true);
   // const [toggleComplete,setToggleComplete] = useState([true])
   //add todo
   const addTodo = (todo) => {
@@ -43,6 +44,15 @@ function App() {
   const handleRemoveAllComplete = () => {
     setTodos(todos.filter((todo) => !todo.isComplete));
   };
+  //toggle all complete
+  const handleToggleAllComplete = () => {
+    setToggleAllComplete(!toggleAllComplete);
+    setTodos(
+      todos.map((todo) => {
+        return { ...todo, isComplete: toggleAllComplete };
+      })
+    );
+  };
   return (
     <div className="App">
       <div className="container">
@@ -76,10 +86,17 @@ function App() {
           </button>
         </div>
         <div className="update-btns-holder">
-          <button className="update-btn btn" onClick={handleRemoveAllComplete}>
-            Remove all Complete Todos
+          {todos.some((todo) => todo.isComplete) ? (
+            <button
+              className="update-btn btn"
+              onClick={handleRemoveAllComplete}
+            >
+              Remove all Complete Todos
+            </button>
+          ) : null}
+          <button className="update-btn btn" onClick={handleToggleAllComplete}>
+            Toggle all Complete Todos: {`${toggleAllComplete}`}
           </button>
-          <button className="update-btn btn">Toggle all Complete Todos:</button>
         </div>
       </div>
     </div>
