@@ -5,6 +5,7 @@ import Todo from "./components/Todo";
 
 function App() {
   let [todos, setTodos] = useState([]);
+  const [todosToShow, setTodosToShow] = useState("all");
   // const [toggleComplete,setToggleComplete] = useState([true])
   //add todo
   const addTodo = (todo) => {
@@ -29,24 +30,49 @@ function App() {
       })
     );
   };
+  //tod-o toshow
+  const handleTodosToShow = (s) => {
+    setTodosToShow(s);
+  };
+  if (todosToShow === "active") {
+    todos = todos.filter((todo) => !todo.isComplete);
+  } else if (todosToShow === "complete") {
+    todos = todos.filter((todo) => todo.isComplete);
+  }
   return (
     <div className="App">
       <div className="container">
         <TodoForm onSubmit={addTodo} />
         {todos.map((todo) => (
           <Todo
-          key={todo.id}
+            key={todo.id}
             todo={todo}
             onDelete={() => deleteTodo(todo.id)}
             toggleComplete={() => handleToggleComplete(todo.id)}
           />
         ))}
         <div className="update-btns-holder">
-          <button></button>
+          <button
+            className="update-btn btn"
+            onClick={() => handleTodosToShow("all")}
+          >
+            All Todos
+          </button>
+          <button
+            className="update-btn btn"
+            onClick={() => handleTodosToShow("active")}
+          >
+            Active Todos
+          </button>
+          <button
+            className="update-btn btn"
+            onClick={() => handleTodosToShow("complete")}
+          >
+            Complete Todos
+          </button>
         </div>
       </div>
     </div>
   );
 }
-
 export default App;

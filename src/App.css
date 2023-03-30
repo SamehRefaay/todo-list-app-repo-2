@@ -42,3 +42,18 @@ form input:first-child {
   padding: 10px 25px;
   font-size: 16px;
 }
+.update-btns-holder {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.update-btn {
+  flex: 1;
+}
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+}
