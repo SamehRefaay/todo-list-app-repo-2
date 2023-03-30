@@ -12,12 +12,14 @@ class TodoForm extends Component {
       text: this.state.text,
       isComplete: false,
     });
+    this.setState({ text: "" });
   };
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
           type={"text"}
+          value={this.state.text}
           onChange={(e) => {
             this.setState({ text: e.target.value });
           }}
