@@ -39,6 +39,10 @@ function App() {
   } else if (todosToShow === "complete") {
     todos = todos.filter((todo) => todo.isComplete);
   }
+  //remove all complete todos from list
+  const handleRemoveAllComplete = () => {
+    setTodos(todos.filter((todo) => !todo.isComplete));
+  };
   return (
     <div className="App">
       <div className="container">
@@ -70,6 +74,12 @@ function App() {
           >
             Complete Todos
           </button>
+        </div>
+        <div className="update-btns-holder">
+          <button className="update-btn btn" onClick={handleRemoveAllComplete}>
+            Remove all Complete Todos
+          </button>
+          <button className="update-btn btn">Toggle all Complete Todos:</button>
         </div>
       </div>
     </div>
