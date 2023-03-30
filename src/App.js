@@ -8,12 +8,16 @@ function App() {
   const addTodo = (todo) => {
     setTodos([todo, ...todos]);
   };
+  //delete todo
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
   return (
     <div className="App">
       <div className="container">
         <TodoForm onSubmit={addTodo} />
         {todos.map((todo) => (
-          <Todo todo={todo} />
+          <Todo todo={todo} onDelete={() => deleteTodo(todo.id)} />
         ))}
       </div>
     </div>

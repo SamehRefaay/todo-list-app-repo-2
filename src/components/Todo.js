@@ -6,7 +6,9 @@ class Todo extends Component {
     return (
       <div className="todo">
         <div className="todo-text">{this.props.todo.text}</div>
-        <button className="delete-btn">Delete</button>
+        <button className="delete-btn" onClick={this.props.onDelete}>
+          Delete
+        </button>
       </div>
     );
   }
